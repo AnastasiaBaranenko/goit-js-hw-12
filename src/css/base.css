@@ -30,3 +30,143 @@ main {
 main:has(.back-link) {
   text-align: center;
 }
+
+input{
+  border: 1px solid #808080;
+  border-radius: 4px;
+width: 272px;
+height: 40px;
+margin-right: 8px;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: 0.04em;
+color: #2e2f42;
+padding-left: 16px;
+}
+
+input:hover{
+border: 1px solid #000;
+}
+
+input:focus{
+  border: 1px solid #4e75ff;
+  outline: none;
+}
+
+.form{
+    display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+button{
+  border-radius: 8px;
+padding: 8px 16px;
+width: 91px;
+height: 40px;
+border: none;
+background: #4e75ff;
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: 0.04em;
+color: #fff;
+}
+
+button:hover{
+  background: #6c8cff;
+}
+
+/* LOADER */
+
+.input-btn{
+display: flex;
+flex-wrap: wrap;
+gap: 4px;
+}
+
+.form-div{
+  text-align: center;
+  margin-top: 32px;
+}
+
+.loader {
+  display: none;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #4e75ff;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+    .loader.is-visible{
+      display: inline-block;
+      visibility: visible;
+    }
+
+
+    /* GALLERY */
+
+    .gallery{
+      display: flex;
+      flex-wrap: wrap;
+      gap : 24px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    li{
+      width: calc((1128px - 48px) / 3);
+      border: 1px solid #808080;
+    }
+    
+    .elements-div{
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  padding-top: 4px;
+  padding-left: 24px;
+  padding-right: 25px;
+    }
+    
+    img{
+    flex-shrink: 0;
+    width: 360px;
+    height: 200px;
+  }
+
+.btn-scroll{
+  display: none;
+  margin: 32px auto;
+  flex-direction: column;
+  border-radius: 8px;
+padding: 8px 16px;
+width: 125px;
+height: 40px;
+background: #4e75ff;
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: 0.04em;
+color: #fff;
+}
+
+  .btn-scroll.is-visible{
+ display: block;
+} 
