@@ -7,12 +7,14 @@ import "izitoast/dist/css/iziToast.min.css";
 const input = document.querySelector('input');
 const form = document.querySelector('form');
 
+
 let query = '';
+let page  = 1;
+let per_page = 15;
 
 form.addEventListener('submit', async (event) => {
 event.preventDefault();
  query = input.value.trim();
-
 if(query === ''){
  page = 1;
  clearGallery();
@@ -24,6 +26,7 @@ backgroundColor: '#ef4040',
 position: 'topRight'
 })
 }else if(query){
+    hideLoadMoreButton();
  clearGallery();
  page = 1;
 showLoader();
@@ -36,24 +39,29 @@ if(images.totalHits === 0){
 messageColor: '#fafafb',
 backgroundColor: '#ef4040',
 position: 'topRight'
-})
+});
+hideLoadMoreButton();
 }else{
  createGallery(images.hits)}
-    showLoadMoreButton()}
+ const totalPages = Math.ceil(images.totalHits / per_page);
+ if(page < totalPages){
+    showLoadMoreButton()
+ }else{
+    hideLoadMoreButton();
+ }
+ 
+}
 catch(error) {iziToast.error({ message: 'Sorry, there are no images matching your search query. Please try again!',
 messageColor: '#fafafb',
 backgroundColor: '#ef4040',
 position: 'topRight'})}
 finally{
      hideLoader();
-     showLoadMoreButton();
 }
 input.value = '';
 }
 })
 
-let page  = 1;
-let per_page = 15;
 
 const btnScroll = document.querySelector('.btn-scroll');
 
@@ -61,9 +69,8 @@ btnScroll.addEventListener('click', async (event) =>{
 
     page +=1;
     showLoader();
-    hideLoadMoreButton();
-
     try{
+        hideLoadMoreButton();
 const data = await getImagesByQuery(query, page);
 const list = document.querySelector('.gallery');
 createGallery(data.hits,list);
@@ -80,7 +87,9 @@ hideLoadMoreButton();
 messageColor: '#fafafb',
 backgroundColor: '#ef4040',
 position: 'topRight'
-    });}else{  
+    });
+}
+else{  
 showLoadMoreButton();
 }
 const item = document.querySelector('li');
@@ -92,8 +101,6 @@ window.scrollBy({
 });
 }}
 catch(error){
-console.log(error);
-console.log(error.message);
     iziToast.show({
     message: 'Sorry, there are no images matching your search query. Please try again!',
 messageColor: '#fafafb',
