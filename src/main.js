@@ -44,10 +44,16 @@ hideLoadMoreButton();
 }else{
  createGallery(images.hits)}
  const totalPages = Math.ceil(images.totalHits / per_page);
- if(page < totalPages){
-    showLoadMoreButton()
+ if(page >= totalPages){
+     hideLoadMoreButton();
+ iziToast.show({
+        message: `We're sorry, but you've reached the end of search results`,
+messageColor: '#fafafb',
+backgroundColor: '#ef4040',
+position: 'topRight'
+    });
  }else{
-    hideLoadMoreButton();
+       showLoadMoreButton();
  }
  
 }
